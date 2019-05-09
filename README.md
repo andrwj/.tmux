@@ -144,8 +144,8 @@ This configuration uses the following bindings:
  - `<prefix> r` reloads the configuration
  - `C-l` clears both the screen and the tmux history
 
- - `<prefix> C-c` creates a new session
- - `<prefix> C-f` lets you switch to another session by name
+ - `<prefix> C-c` 새로운 세션 만들기
+ - `<prefix> C-f` 이름입력해서 다른 세션으로 바꾸기
 
  - `<prefix> C-h` and `<prefix> C-l` let you navigate windows (default
    `<prefix> n` and `<prefix> p` are unbound)
@@ -173,28 +173,28 @@ Additionally, `copy-mode-vi` matches [my own Vim configuration][]
 
 [my own Vim configuration]: https://github.com/gpakosz/.vim.git
 
-Bindings for `copy-mode-vi`:
+`복사모드`<sup>copy-mode-vi</sup>에서 키 조합:
 
-- `v` begins selection / visual mode
-- `C-v` toggles between blockwise visual mode and visual mode
-- `H` jumps to the start of line
-- `L` jumps to the end of line
-- `y` copies the selection to the top paste-buffer
-- `Escape` cancels the current operation
+- `v` 선택 시작 / 시각모드
+- `C-v` 블록모드/시각모드 사이 전환
+- `H` 현재 줄의 처음으로 이동
+- `L` 현재 줄의 끝으로 이동
+- `y` 최상위 `붙여넣기 버퍼`<sup>paste-buffer</sup>에 선택영역 복사
+- `Escape` 현재 작업 취소
 
 
 수정된 설정 `(.tmux.conf.local)`
 -----------
- - `<prefix> -` 현재 PANE을 수직으로 분할
- - `<prefix> |` 현재 PANE을 수평으로 분할
+ - `<prefix> -` 현재 `창`<sup>pane</sup>을 수직으로 분할
+ - `<prefix> |` 현재 `창`을 수평으로 분할
 
  - `<prefix> C-e` `~/.tmux.conf.local` 로컬 설정 파일 열기
  - `<prefix> e` 복사모드 (토글)
 
 
- - `<prefix> h`, `<prefix> j`, `<prefix> k` and `<prefix> l` VIM 키 바인딩으로 PANE 간 이동
- - `<prefix> H`, `<prefix> J`, `<prefix> K`, `<prefix> L` let you resize panes
- - `<prefix> <` and `<prefix> >` let you swap panes
+ - `<prefix> h`, `<prefix> j`, `<prefix> k` and `<prefix> l` VIM 키 바인딩으로 `창`<sup>pane</sup> 간 이동
+ - `<prefix> H`, `<prefix> J`, `<prefix> K`, `<prefix> L` 창<sup>panes</sup> 사이즈 조절
+ - `<prefix> <` and `<prefix> >` `창`<sup>panes</sup> 바꾸기
 
 
  - `<prefix> Enter ` 현재 PANE 최대화 (토글)
