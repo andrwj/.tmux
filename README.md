@@ -182,6 +182,34 @@ Bindings for `copy-mode-vi`:
 - `y` copies the selection to the top paste-buffer
 - `Escape` cancels the current operation
 
+
+수정된 설정 `(.tmux.conf.local)`
+-----------
+ - `<prefix> -` 현재 PANE을 수직으로 분할
+ - `<prefix> |` 현재 PANE을 수평으로 분할
+
+ - `<prefix> C-e` `~/.tmux.conf.local` 로컬 설정 파일 열기
+ - `<prefix> e` 복사모드 (토글)
+
+
+ - `<prefix> h`, `<prefix> j`, `<prefix> k` and `<prefix> l` VIM 키 바인딩으로 PANE 간 이동
+ - `<prefix> H`, `<prefix> J`, `<prefix> K`, `<prefix> L` let you resize panes
+ - `<prefix> <` and `<prefix> >` let you swap panes
+
+
+ - `<prefix> Enter ` 현재 PANE 최대화 (토글)
+
+
+ - `<prefix> q` Kill Pane
+ - `<prefix> Q` Kill Server
+ - `<prefix> &` Kill Dead Pone 
+
+
+ - `<prefix> w` Attach된 PANE 목록 
+
+
+
+
 Configuration
 -------------
 

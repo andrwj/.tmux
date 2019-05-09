@@ -293,3 +293,28 @@ tmux_conf_copy_to_os_clipboard=false
 
 # move status line to top
 #set -g status-position top
+
+# split current pane vertically 
+unbind |
+bind | split-window -h
+
+# maximize current pane
+unbind Enter
+bind Enter run 'cut -c3- ~/.tmux.conf | sh -s _maximize_pane "#{session_name}" #D'
+
+# kill pane
+unbind q
+bind q killp
+
+# kill server
+unbind Q
+bind Q confirm kill-server
+
+# edit configuration
+unbind C-e
+bind C-e new-window -n '~/.tmux.conf.local' "sh -c '\${EDITOR:-vim} ~/.tmux.conf.local && tmux source ~/.tmux.conf && tmux display \"~/.tmux.conf sourced\"'"
+
+# Enter Copy-mode
+unbind e
+bind e copy-mode
+
