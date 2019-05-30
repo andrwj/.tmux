@@ -5,7 +5,7 @@ Self-contained, pretty and versatile `.tmux.conf` configuration file.
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/553208/19740585/85596a5a-9bbf-11e6-8aa1-7c8d9829c008.gif)
 
-Installation
+설치
 ------------
 
 Requirements:
@@ -21,7 +21,10 @@ existing `~/.tmux.conf` first)
 $ cd
 $ git clone https://github.com/gpakosz/.tmux.git
 $ ln -s -f .tmux/.tmux.conf
-$ cp .tmux/.tmux.conf.local .
+$ ln -s -f .tmux/.tmux.conf.local .
+
+# 맥 사용자인 경우 추천!
+$ brew install reattach-to-user-namespace
 ```
 
 Then proceed to [customize] your `~/.tmux.conf.local` copy.
@@ -37,7 +40,8 @@ Development][bhtmux2] by [@bphogan].
 [bhtmux2]: https://pragprog.com/book/bhtmux2/tmux-2
 [@bphogan]: https://twitter.com/bphogan
 
-Troubleshooting
+
+문제해결
 ---------------
 
  - **I'm running tmux `HEAD` and things don't work properly. What should I do?**
@@ -86,7 +90,8 @@ Troubleshooting
 [1681]: https://github.com/Microsoft/BashOnWindows/issues/1681
 [wsltty]: https://github.com/mintty/wsltty
 
-Features
+
+특징
 --------
 
  - `C-a` acts as secondary prefix, while keeping default `C-b` prefix
@@ -126,7 +131,8 @@ panes and automatically switches to copy-mode to select text.
 
 ![Mouse mode](https://cloud.githubusercontent.com/assets/553208/9890797/8dffe542-5c02-11e5-9c06-a25b452e6fcc.gif)
 
-Bindings
+
+키보드 바로가기
 --------
 
 tmux may be controlled from an attached client by using a key combination of a
@@ -139,11 +145,11 @@ list of key bindings:
 
 This configuration uses the following bindings:
 
- - `<prefix> e` opens `~/.tmux.conf.local` with the editor defined by the
-   `$EDITOR` environment variable (defaults to `vim` when empty)
- - `<prefix> r` reloads the configuration
- - `C-l` clears both the screen and the tmux history
-
+ - ~~`<prefix> e` opens `~/.tmux.conf.local` with the editor defined by the `$EDITOR` environment variable (defaults to `vim` when empty)~~
+ 
+   (`<prefix> C-e`로 변경됨)
+ - `<prefix> r` 설정파일 다시 읽어들이기
+ - `C-l` 화면정리! tmux history 삭제!
  - `<prefix> C-c` 새로운 세션 만들기
  - `<prefix> C-f` 이름입력해서 다른 세션으로 바꾸기
 
@@ -210,7 +216,7 @@ Additionally, `copy-mode-vi` matches [my own Vim configuration][]
 
 
 
-Configuration
+설정 변경
 -------------
 
 While this configuration tries to bring sane default settings, you may want to
@@ -223,7 +229,7 @@ variables you can adjust to alter different behaviors. Pressing `<prefix> e`
 will open `~/.tmux.conf.local` with the editor defined by the `$EDITOR`
 environment variable (defaults to `vim` when empty).
 
-### Enabling the Powerline look
+### Powerline 갬성 사용하기
 
 Powerline originated as a status-line plugin for Vim. Its popular eye-catching
 look is based on the use of special symbols: <img width="80" alt="Powerline Symbols" style="vertical-align: middle;" src="https://cloud.githubusercontent.com/assets/553208/10687156/1b76dda6-796b-11e5-83a1-1634337c4571.png" />
@@ -246,15 +252,15 @@ To make use of these symbols, there are several options:
 Please see the [Powerline manual] for further details.
 
 Then edit the `~/.tmux.conf.local` file (`<prefix> e`) and adjust the following
-variables:
+variables (아래 문자가 보이지 않는다면 사용중인 폰트에 문자가 빠진 것이다. Nerd Font 설치 권함):
 
 ```
 tmux_conf_theme_left_separator_main=''
-tmux_conf_theme_left_separator_sub=''
+tmux_conf_theme_left_separator_sub='|'
 tmux_conf_theme_right_separator_main=''
 tmux_conf_theme_right_separator_sub=''
 ```
-### Configuring the status line
+### 상태바 설정변경
 
 Contrary to the first iterations of this configuration, by now you have total
 control on the content and order of `status-left` and `status-right`.
