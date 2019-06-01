@@ -14,12 +14,11 @@ Requirements:
     Ubuntu on Windows)
   - outside of tmux, `$TERM` must be set to `xterm-256color`
 
-To install, run the following from your terminal: (you may want to backup your
-existing `~/.tmux.conf` first)
+To install, run the following from your terminal: (you may want to backup your existing `~/.tmux.conf` first)
 
 ```
 $ cd
-$ git clone https://github.com/gpakosz/.tmux.git
+$ git clone https://github.com/andrwj/.tmux.git
 $ ln -s -f .tmux/.tmux.conf
 $ ln -s -f .tmux/.tmux.conf.local .
 
@@ -146,7 +145,7 @@ list of key bindings:
 This configuration uses the following bindings:
 
  - ~~`<prefix> e` opens `~/.tmux.conf.local` with the editor defined by the `$EDITOR` environment variable (defaults to `vim` when empty)~~
- 
+
    (`<prefix> C-e`로 변경됨)
  - `<prefix> r` 설정파일 다시 읽어들이기
  - `C-l` 화면정리! tmux history 삭제!
