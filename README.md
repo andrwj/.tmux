@@ -1,20 +1,20 @@
 .tmux
 =====
 
-Self-contained, pretty and versatile `.tmux.conf` configuration file.
+겁나 제대로 설정잡힌  `.tmux.conf`. 원래 저장소는 [@gpakosz/.tmux](https://github.com/gpakosz/.tmux). 아래 번역들은 첨삭과 변경을 가해 원본과 다른 부분이 많다는 점에 주의!
+
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/553208/19740585/85596a5a-9bbf-11e6-8aa1-7c8d9829c008.gif)
 
 설치
 ------------
 
-Requirements:
+준비사항:
 
-  - tmux **`>= 2.1`** running inside Linux, Mac, OpenBSD, Cygwin or WSL (Bash on
-    Ubuntu on Windows)
-  - outside of tmux, `$TERM` must be set to `xterm-256color`
+  - 버전 **`>= 2.1`** 이상의 tmux. 리눅스, 맥, 오픈BSD, 잡종 Cygwin 또는 WSL (혼또니..?) 
+  - `$TERM` 환경변수는 반드시 `xterm-256color` 값으로 설정해야 함!
 
-To install, run the following from your terminal: (you may want to backup your existing `~/.tmux.conf` first)
+터미널에서 아래 명령들 수행.  (기존 파일 백업 잊지 마셈: ~/.tmux.conf)
 
 ```
 $ cd
@@ -22,72 +22,109 @@ $ git clone https://github.com/andrwj/.tmux.git
 $ ln -s -f .tmux/.tmux.conf
 $ ln -s -f .tmux/.tmux.conf.local .
 
-# 맥 사용자인 경우 추천!
+# 맥 사용자인 경우 어쩔 수 없이 깔아야 함. 설치하지 않으면 인생이 피곤해짐.
 $ brew install reattach-to-user-namespace
 ```
 
-Then proceed to [customize] your `~/.tmux.conf.local` copy.
+설정 변경은 오직 `~/.tmux.conf.local` 에서만 진행할 것!  
 
 [customize]: #enabling-the-powerline-look
 
-If you're a Vim user, setting the `$EDITOR` environment variable to `vim` will
-enable and further customize the vi-style key bindings (see tmux manual).
+Vim 사용자는 `$EDITOR`  환경 변수값을  `vim` will으로 설정해야 키바인딩과 기타 기능이 활성화됨.
 
-If you're new to tmux, I recommend you read [tmux 2: Productive Mouse-Free
-Development][bhtmux2] by [@bphogan].
+tmux가 뭔지 어떻게 사용하는지 1도 모르는 사용자는, 그냥 적당히 웹서칭을 통해 필요한 내용을 알아보셈. 굳이 책 구입같은 건 하지말기를 권함.
+
+
 
 [bhtmux2]: https://pragprog.com/book/bhtmux2/tmux-2
 [@bphogan]: https://twitter.com/bphogan
 
 
-문제해결
----------------
 
- - **I'm running tmux `HEAD` and things don't work properly. What should I do?**
 
-   Please open an issue describing what doesn't work with upcoming tmux. I'll do
-   my best to address it.
+키보드 바로가기
+--------
 
- - **Status line is broken and/or gets duplicated at the bottom of the screen.
-   What gives?**
+tmux를 사용할 때는 항상 `prefix`라 불리는 키를 먼저 입력해야 함! 기본 값은 `C-b`인데  vim 사용할 때 불편해서 `C-a`로 바꿔뒀음. 보통 `C-b`도 가능하게 설정해두는 경우가 많지만, 여기서는 알짤없이 `C-a`로만 사용합니다. 
 
-   This particularly happens on Linux when the distribution provides a version
-   of glib that received Unicode 9.0 upgrades (glib `>= 2.50.1`) while providing
-   a version of glibc that didn't (glibc `< 2.26`). You may also configure
-   `LC_CTYPE` to use an `UTF-8` locale. Typically VTE based terminal emulators
-   rely on glib's `g_unichar_iswide()` function while tmux relies on glibc's
-   `wcwidth()` function. When these two functions disagree, display gets messed
-   up.
+키 조합 표시 설명:
+  - `<prefix>` <kbd>Ctrl</kbd> + <kbd>a</kbd> 입력 한다는 뜻.
+  - `<prefix> c` <kbd>Ctrl</kbd> + <kbd>a</kbd> 누른 뒤 <kbd>c</kbd> 입력  한다는 뜻.
+  - `<prefix> C-c` <kbd>Ctrl</kbd> + <kbd>a</kbd> 누른 뒤 <kbd>Ctrl</kbd> + <kbd>c</kbd> 입력 한다는 뜻.
 
-   This can also happen on macOS when using iTerm2 and "Use Unicode version 9
-   character widths" is enabled in `Preferences... > Profiles > Text`
 
-   For that reason, the default `~/.tmux.conf.local` file stopped using Unicode
-   characters for which width changed in between Unicode 8.0 and 9.0 standards,
-   as well as Emojis.
+용어 설명:
 
- - **I installed Powerline and/or (patched) fonts but can't see Powerline
-   symbols.**
 
-   First, you don't need to install Powerline. You only need fonts patched with
-   Powerline symbols or the standalone `PowerlineSymbols.otf` font. Then make
-   sure your `~/.tmux.conf.local` copy uses the right code points for
-   `tmux_conf_theme_left_separator_XXX` values.
+   - `세션`<sup>session</sup> tmux 실행 단위.
+   - `윈도우`<sup>window</sup> tmux 표시 단위 중 최상위 집합.  세션은 윈도우의 집합이다. *(새 터미널이나 새 iTerm2 윈도우를 만들지 않고 하나의 터미널 혹은 iTerm2 인스턴스를 사용한다)*
+   - `창`<sup>pane</sup> 윈도우 내의 특정 구역. 윈도우는 창의 집합이다. 사용자에게 창은 셸<sup>shell</sup>이다.
+    
 
- - **I'm using Bash On Windows (WSL), colors and Powerline look are broken.**
+키보드 조합 설정:
 
-   There is currently a [bug][1681] in the new console powering Bash On Windows
-   preventing text attributes (bold, underscore, ...) to combine properly with
-   colors. The workaround is to search your `~/.tmux.conf.local` copy and
-   replace attributes with `'none'`.
+ - 창<sup>pane</sup>
+ 
+   - `<prefix> |` 현재 창<sup>pane</sup>을 수직으로 분할
+   - `<prefix> -` 현재 창<sup>pane</sup>을 수평으로 분할
+   - `<prefix>` + `h` (왼쪽) | `j` (아래) | `k` (위) | `l` (오른쪽) -- Vim 동작방식으로 창<sup>pane</sup> 전환
+   - `<prefix>` + `H`, `J`, `K`, `L` -- 창<sup>panem</sup> 크기 조절  (한번 누를 때 마다 2 칸씩 조절. 마우스로도 조절 가능)
+   - `<prefix> Enter ` 현재 창<sup>pane</sup> 최대화/복귀 (토글<sup>toggle</sup>)
+   - `<prefix> <` 또는 `<prefix> >` 창<sup>panes</sup> 위치 바꾸기<sup>swap</sup>
 
-   Also, until Window's console replaces its GDI based render with a DirectWrite
-   one, Powerline symbols will be broken.
 
-   The alternative is to use the [Mintty terminal for WSL][wsltty].
 
-[1681]: https://github.com/Microsoft/BashOnWindows/issues/1681
-[wsltty]: https://github.com/mintty/wsltty
+ - **내용 복사**
+
+   - `<prefix> e` 복사모드 전환/해제 (토글). 또는 마우스모드 사용시 영역선택 후 <kbd>Cmd</kbd>-<kbd>c</kbd> or <kbd>Ctrl</kbd>-<kbd>c</kbd>
+
+   - `복사모드`<sup>copy-mode-vi</sup>에서 키 조합:
+
+     - `v` 선택 시작 / 시각모드
+     - `C-v` 블록모드/시각모드 사이 전환
+     - `H` 현재 줄의 처음으로 이동
+     - `L` 현재 줄의 끝으로 이동
+     - `y` 최상위 `붙여넣기 버퍼`<sup>paste-buffer</sup>에 선택영역 복사
+     - `Escape` 현재 작업 취소
+
+
+ - **닫기** 
+   - `<prefix> q` 창<sup>pane</sup> 닫기
+   - `<prefix> Q` tmux 강제 종료
+   - `<prefix> &` 응답없는 창<sup>pane</sup> 닫기
+
+
+ - **세션** <sup>session</sup>
+
+   - `<prefix> $` 세션 이름 설정
+   - `<prefix> C-c` 새로운 세션 시작.
+   - `<prefix> C-f` 이름입력해서 다른 세션으로 바꾸기
+
+
+ - **윈도우** <sup>window</sup>
+
+   - `<prefix> C-h`(previous) 또는 `<prefix> C-l`(next) **윈도우**<sup>window</sup> 간 전환
+   - `<prefix> Tab` 직전의 활성 윈도우를 전면으로 가져오기
+
+
+ - **버퍼** <sup>buffer</sup>
+
+   - `<prefix> b` paste-buffers 목록 표시
+   - `<prefix> p` paste-buffer 에서 내용 가져오기
+   - `<prefix> P` 내용을 가져올 paste-buffer 선택하기
+   
+ 
+ - **기타**
+
+   - `<prefix> m` 마우스 사용 설정/해제 (토글)
+   - `<prefix> w` 세션<sup>session</sup>, 윈도우<sup>window</sup>, 창<sup>pane</sup> 목록 표시. (구조적 표현, 세션/윈도우/창 사이를 손쉽게 전환 가능)
+   - `<prefix> C-e` `$EDITOR`에 설정된 편집기로 `~/.tmux.conf.local` 설정 파일 열기. (EDITOR 설정이 없을 경우, 기본값 
+'vim')
+   - `<prefix> r` 설정파일 다시 읽어들이기
+   - `C-l` 화면정리! tmux history 삭제!
+   - `<prefix> U` (가능한 경우) Urlview 열기
+   - `<prefix> F` (가능한 경우) Facebook PathPicker 열기 
+
 
 
 특징
@@ -129,90 +166,6 @@ Mouse mode allows you to set the active window, set the active pane, resize
 panes and automatically switches to copy-mode to select text.
 
 ![Mouse mode](https://cloud.githubusercontent.com/assets/553208/9890797/8dffe542-5c02-11e5-9c06-a25b452e6fcc.gif)
-
-
-키보드 바로가기
---------
-
-tmux may be controlled from an attached client by using a key combination of a
-prefix key, followed by a command key. This configuration uses `C-a` as a
-secondary prefix while keeping `C-b` as the default prefix. In the following
-list of key bindings:
-  - `<prefix>` means you have to either hit <kbd>Ctrl</kbd> + <kbd>a</kbd> or <kbd>Ctrl</kbd> + <kbd>b</kbd>
-  - `<prefix> c` means you have to hit <kbd>Ctrl</kbd> + <kbd>a</kbd> or <kbd>Ctrl</kbd> + <kbd>b</kbd> followed by <kbd>c</kbd>
-  - `<prefix> C-c` means you have to hit <kbd>Ctrl</kbd> + <kbd>a</kbd> or <kbd>Ctrl</kbd> + <kbd>b</kbd> followed by <kbd>Ctrl</kbd> + <kbd>c</kbd>
-
-This configuration uses the following bindings:
-
- - ~~`<prefix> e` opens `~/.tmux.conf.local` with the editor defined by the `$EDITOR` environment variable (defaults to `vim` when empty)~~
-
-   (`<prefix> C-e`로 변경됨)
- - `<prefix> r` 설정파일 다시 읽어들이기
- - `C-l` 화면정리! tmux history 삭제!
- - `<prefix> C-c` 새로운 세션 만들기
- - `<prefix> C-f` 이름입력해서 다른 세션으로 바꾸기
-
- - `<prefix> C-h` and `<prefix> C-l` let you navigate windows (default
-   `<prefix> n` and `<prefix> p` are unbound)
- - `<prefix> Tab` brings you to the last active window
-
- - `<prefix> -` splits the current pane vertically
- - `<prefix> _` splits the current pane horizontally
- - `<prefix> h`, `<prefix> j`, `<prefix> k` and `<prefix> l` let you navigate
-   panes ala Vim
- - `<prefix> H`, `<prefix> J`, `<prefix> K`, `<prefix> L` let you resize panes
- - `<prefix> <` and `<prefix> >` let you swap panes
- - `<prefix> +` maximizes the current pane to a new window
-
- - `<prefix> m` toggles mouse mode on or off
-
- - `<prefix> U` launches Urlview (if available)
- - `<prefix> F` launches Facebook PathPicker (if available)
-
- - `<prefix> Enter` enters copy-mode
- - `<prefix> b` lists the paste-buffers
- - `<prefix> p` pastes from the top paste-buffer
- - `<prefix> P` lets you choose the paste-buffer to paste from
-
-Additionally, `copy-mode-vi` matches [my own Vim configuration][]
-
-[my own Vim configuration]: https://github.com/gpakosz/.vim.git
-
-`복사모드`<sup>copy-mode-vi</sup>에서 키 조합:
-
-- `v` 선택 시작 / 시각모드
-- `C-v` 블록모드/시각모드 사이 전환
-- `H` 현재 줄의 처음으로 이동
-- `L` 현재 줄의 끝으로 이동
-- `y` 최상위 `붙여넣기 버퍼`<sup>paste-buffer</sup>에 선택영역 복사
-- `Escape` 현재 작업 취소
-
-
-수정된 설정 `(.tmux.conf.local)`
------------
- - `<prefix> -` 현재 `창`<sup>pane</sup>을 수직으로 분할
- - `<prefix> |` 현재 `창`을 수평으로 분할
-
- - `<prefix> C-e` `~/.tmux.conf.local` 로컬 설정 파일 열기
- - `<prefix> e` 복사모드 (토글)
-
-
- - `<prefix> h`, `<prefix> j`, `<prefix> k` and `<prefix> l` VIM 키 바인딩으로 `창`<sup>pane</sup> 간 이동
- - `<prefix> H`, `<prefix> J`, `<prefix> K`, `<prefix> L` 창<sup>panes</sup> 사이즈 조절
- - `<prefix> <` and `<prefix> >` `창`<sup>panes</sup> 바꾸기
-
-
- - `<prefix> Enter ` 현재 PANE 최대화 (토글)
-
-
- - `<prefix> q` Kill Pane
- - `<prefix> Q` Kill Server
- - `<prefix> &` Kill Dead Pone 
-
-
- - `<prefix> w` Attach된 PANE 목록 
-
-
 
 
 설정 변경
@@ -351,3 +304,54 @@ font.
 ![regedit](https://cloud.githubusercontent.com/assets/553208/19741304/71a2f3ae-9bc0-11e6-96aa-4c09a812c313.png)
 
 [font linking]: https://msdn.microsoft.com/en-us/goglobal/bb688134.aspx
+
+문제해결
+---------------
+
+ - **I'm running tmux `HEAD` and things don't work properly. What should I do?**
+
+   Please open an issue describing what doesn't work with upcoming tmux. I'll do
+   my best to address it.
+
+ - **Status line is broken and/or gets duplicated at the bottom of the screen.
+   What gives?**
+
+   This particularly happens on Linux when the distribution provides a version
+   of glib that received Unicode 9.0 upgrades (glib `>= 2.50.1`) while providing
+   a version of glibc that didn't (glibc `< 2.26`). You may also configure
+   `LC_CTYPE` to use an `UTF-8` locale. Typically VTE based terminal emulators
+   rely on glib's `g_unichar_iswide()` function while tmux relies on glibc's
+   `wcwidth()` function. When these two functions disagree, display gets messed
+   up.
+
+   This can also happen on macOS when using iTerm2 and "Use Unicode version 9
+   character widths" is enabled in `Preferences... > Profiles > Text`
+
+   For that reason, the default `~/.tmux.conf.local` file stopped using Unicode
+   characters for which width changed in between Unicode 8.0 and 9.0 standards,
+   as well as Emojis.
+
+ - **I installed Powerline and/or (patched) fonts but can't see Powerline
+   symbols.**
+
+   First, you don't need to install Powerline. You only need fonts patched with
+   Powerline symbols or the standalone `PowerlineSymbols.otf` font. Then make
+   sure your `~/.tmux.conf.local` copy uses the right code points for
+   `tmux_conf_theme_left_separator_XXX` values.
+
+ - **I'm using Bash On Windows (WSL), colors and Powerline look are broken.**
+
+   There is currently a [bug][1681] in the new console powering Bash On Windows
+   preventing text attributes (bold, underscore, ...) to combine properly with
+   colors. The workaround is to search your `~/.tmux.conf.local` copy and
+   replace attributes with `'none'`.
+
+   Also, until Window's console replaces its GDI based render with a DirectWrite
+   one, Powerline symbols will be broken.
+
+   The alternative is to use the [Mintty terminal for WSL][wsltty].
+
+[1681]: https://github.com/Microsoft/BashOnWindows/issues/1681
+[wsltty]: https://github.com/mintty/wsltty
+
+
