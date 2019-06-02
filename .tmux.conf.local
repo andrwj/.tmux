@@ -317,3 +317,8 @@ bind C-e new-window -n '~/.tmux.conf.local' "sh -c '\${EDITOR:-vim} ~/.tmux.conf
 # Enter Copy-mode
 unbind e
 bind e copy-mode
+
+# Navigation
+unbind Tab
+bind Tab choose-tree -Zw
+
