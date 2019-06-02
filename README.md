@@ -63,7 +63,7 @@ tmux를 사용할 때는 항상 `prefix`라 불리는 키를 먼저 입력해야
 
 키보드 조합 설정:
 
- - 창<sup>pane</sup>
+ - **창** <sup>pane</sup>
  
    - `<prefix> |` 현재 창<sup>pane</sup>을 수직으로 분할
    - `<prefix> -` 현재 창<sup>pane</sup>을 수평으로 분할
@@ -130,9 +130,8 @@ tmux를 사용할 때는 항상 `prefix`라 불리는 키를 먼저 입력해야
 특징
 --------
 
- - `C-a` acts as secondary prefix, while keeping default `C-b` prefix
  - visual theme inspired by [Powerline][]
- - [maximize any pane to a new window with `<prefix> +`][maximize-pane]
+ - [maximize any pane to a new window with `<prefix> Enter`][maximize-pane]
  - SSH/Mosh aware username and hostname status line information
  - mouse mode toggle with `<prefix> m`
  - automatic usage of [`reattach-to-user-namespace`][reattach-to-user-namespace]
@@ -153,11 +152,11 @@ tmux를 사용할 때는 항상 `prefix`라 불리는 키를 먼저 입력해야
 [Facebook PathPicker]: https://facebook.github.io/PathPicker/
 [Urlview]: https://packages.debian.org/stable/misc/urlview
 
-The "maximize any pane to a new window with `<prefix> +`" feature is different
+The "maximize any pane to a new window with `<prefix> Enter`" feature is different
 from builtin `resize-pane -Z` as it allows you to further split a maximized
 pane. It's also more flexible by allowing you to maximize a pane to a new
 window, then change window, then go back and the pane is still in maximized
-state in its own window. You can then minimize a pane by using `<prefix> +`
+state in its own window. You can then minimize a pane by using `<prefix> Enter`
 either from the source window or the maximized window.
 
 ![Maximize pane](https://cloud.githubusercontent.com/assets/553208/9890858/ee3c0ca6-5c02-11e5-890e-05d825a46c92.gif)
@@ -217,7 +216,7 @@ tmux_conf_theme_right_separator_sub=''
 Contrary to the first iterations of this configuration, by now you have total
 control on the content and order of `status-left` and `status-right`.
 
-Edit the `~/.tmux.conf.local` file (`<prefix> e`) and adjust the
+Edit the `~/.tmux.conf.local` file (`<prefix> C-e`) and adjust the
 `tmux_conf_theme_status_left` and `tmux_conf_theme_status_right` variables to
 your own preferences.
 
