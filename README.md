@@ -16,11 +16,21 @@
 
 터미널에서 아래 명령들 수행.  (기존 파일 백업 잊지 마셈: ~/.tmux.conf)
 
+원 저장소가 인기 있고 간간히 업데이트되므로 최대한 원래 소스를 건드리지 않고 커스톰 설정을 유지하기 위해 별도의 파일로 분리한다.  설정파일에서 다른 설정파일을 연속으로 읽어들일 수 없으므로 내용을 합치는 방법을 택한다.
+
 ```
 $ cd
 $ git clone https://github.com/andrwj/.tmux.git
+$ cd .tmux/
+
+# for ubuntu
+$ cat .tmux.conf.local tmux.conf.ubuntu-server > ~/.tmux.conf.local
+
+# for macOS
+$ cat .tmux.conf.local tmux.conf.ubuntu-server tmux.conf.macos > ~/.tmux.conf.local
+
+$ cd
 $ ln -f .tmux/.tmux.conf
-$ ln -f .tmux/tmux.conf.ubuntu-server ~/.tmux.conf.local
 
 # 맥 사용자인 경우 어쩔 수 없이 깔아야 함. 설치하지 않으면 인생이 피곤해짐.
 $ brew install reattach-to-user-namespace
