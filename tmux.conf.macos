@@ -1,0 +1,7 @@
+if '[ -f ~/.tmux/.tmux.conf.local ]' 'source ~/.tmux/.tmux.conf.local'
+if '[ -f ~/.tmux/tmux.conf.ubuntu-server ]' 'source ~/.tmux/tmux.conf.ubuntu-server'
+
+# Navigation
+unbind Tab
+bind Tab choose-tree -Zw
+
