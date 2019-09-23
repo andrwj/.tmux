@@ -1,0 +1,4 @@
+# Navigation
+unbind Tab
+bind Tab choose-tree -Zw
+
