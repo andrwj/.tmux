@@ -52,3 +52,6 @@ bind e copy-mode
 unbind Tab
 bind Tab choose-tree -Zw
 
+# for vim-tmux-clibpboard plugin in VIM
+set -g focus-events
+
