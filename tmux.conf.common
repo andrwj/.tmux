@@ -50,5 +50,4 @@ bind e copy-mode
 
 # Navigation
 unbind Tab
-bind Tab choose-tree -Zw
 
