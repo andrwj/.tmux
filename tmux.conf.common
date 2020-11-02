@@ -51,3 +51,6 @@ bind e copy-mode
 # Navigation
 unbind Tab
 
+# for vim-tmux-clibpboard plugin in VIM
+set -g focus-events
+
