@@ -11,7 +11,8 @@
 
 준비사항:
 
-  - 버전 **`>= 2.1`** 이상의 tmux. 리눅스, 맥, 오픈BSD, 잡종 Cygwin 또는 WSL (혼또니..?) 
+  - 버전 **`>= 2.3`** 이상의 tmux. 리눅스, 맥, 오픈BSD, 잡종 Cygwin 또는 WSL
+  - awk, perl, sed
   - `$TERM` 환경변수는 반드시 `xterm-256color` 값으로 설정해야 함!
 
 터미널에서 아래 명령들 수행.  (기존 파일 백업 잊지 마셈: ~/.tmux.conf)
@@ -138,12 +139,12 @@ tmux를 사용할 때는 항상 `prefix`라 불리는 키를 먼저 입력해야
    if available
  - laptop battery status line information
  - uptime status line information
- - optional highlight of focused pane (tmux `>= 2.1`)
+ - optional highlight of focused pane
  - configurable new windows and panes behavior (optionally retain current path)
  - SSH/Mosh aware split pane (reconnects to remote server)
  - copy to OS clipboard (needs [`reattach-to-user-namespace`][reattach-to-user-namespace]
    on macOS, `xsel` or `xclip` on Linux)
- - support for 4-digit hexadecimal Unicode characters (requires `perl` or Bash >= 4.1.2)
+ - support for 4-digit hexadecimal Unicode characters
  - [Facebook PathPicker][] integration if available
  - [Urlview][] integration if available
 
@@ -258,7 +259,35 @@ tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #(curl wttr.in?
 
 [wttr.in]: https://github.com/chubin/wttr.in#one-line-output
 
-### Accessing the macOS clipboard from within tmux sessions
+💡 You can also define your own custom variables. See the sample
+`.tmux.conf.local` file for instructions.
+
+Finally, remember `tmux_conf_theme_status_left` and
+`tmux_conf_theme_status_right` end up being given to tmux as `status-left` and
+`status-right` which means they're passed through `strftime()`. As such, the `%`
+character has a special meaning and needs to be escaped by doubling it, e.g.
+```
+tmux_conf_theme_status_right='#(echo foo %% bar)'
+```
+See `man 3 strftime`.
+
+### Using TPM plugins
+
+This configuration now comes with built-in [TPM] support:
+- use the `set -g @plugin ...` syntax to enable a plugin
+- whenever a plugin introduces a variable to be used in `status-left` or
+  `status-right`, you can use it in `tmux_conf_theme_status_left` and
+  `tmux_conf_theme_status_right` variables, see instructions above 👆
+- ⚠️ do not add `set -g @plugin 'tmux-plugins/tpm'`
+- ⚠️ do not add `run '~/.tmux/plugins/tpm/tpm'` to `~/.tmux.conf` or your
+- `~/.tmux.conf.local` copy ← people who are used to alter
+  `.tmux.conf` to add TPM support will have to adapt their configuration
+
+See `~/.tmux.conf.local` for instructions.
+
+[TPM]: https://github.com/tmux-plugins/tpm
+
+### Accessing the macOS clipboard from within tmux sessions (tmux `< 2.6`)
 
 [Chris Johnsen created the `reattach-to-user-namespace`
 utility][reattach-to-user-namespace] that makes `pbcopy` and `pbpaste` work
