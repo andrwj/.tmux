@@ -1,2 +1,6 @@
+tmux_conf_uninstall_plugins_on_reload=false
+tmux_conf_update_plugins_on_reload=false
+tmux_conf_update_plugins_on_launch=false
+
 set -g @plugin 'sainnhe/tmux-fzf'
 

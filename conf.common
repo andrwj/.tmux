@@ -42,7 +42,7 @@ bind Q confirm kill-server
 
 # edit configuration
 unbind C-e
-bind C-e new-window -n '~/.tmux.conf.local' "sh -c '\${EDITOR:-vim} ~/.tmux.conf.local && tmux source ~/.tmux.conf && tmux display \"~/.tmux.conf sourced\"'"
+# bind C-e new-window -n '~/.tmux.conf.local' "sh -c '\${EDITOR:-vim} ~/.tmux.conf.local && tmux source ~/.tmux.conf && tmux display \"~/.tmux.conf sourced\"'"
 
 # Enter Copy-mode
 unbind e

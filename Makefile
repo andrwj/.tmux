@@ -1,4 +1,4 @@
-mac:
+macos:
 	cat .tmux.conf.local conf.common conf.macos conf.lab conf.plugins > ~/.tmux.conf.local
 
 linux:
