@@ -4,3 +4,9 @@ tmux_conf_update_plugins_on_launch=false
 
 set -g @plugin 'sainnhe/tmux-fzf'
 
+#https://github.com/olimorris/tmux-pomodoro-plus
+set -g @plugin 'olimorris/tmux-pomodoro-plus'
+set -g status-left "#{pomodoro_status}"
+set -g @pomodoro_on "#[fg=$text_red]🍅 "
+set -g @pomodoro_complete "#[fg=$text_green]🍅 "
+
