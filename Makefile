@@ -10,4 +10,5 @@ geovim: mac
 mac-install:
 	brew install reattach-to-user-namespace
 
-
+edit:
+	vim `./fzf-tmux -l`
