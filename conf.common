@@ -17,12 +17,12 @@ set -g mouse on
 set -g status-keys vi
 set -g mode-keys vi
 
-# C-b와 C-a를 동시에 사용하지 않고 C-a로 대체하기
-set -gu prefix2
 unbind C-a
 unbind C-b
-set -g prefix C-a
-bind C-a send-prefix
+unbind-key C-a
+unbind-key C-b
+set-option -g prefix C-Space
+bind-key C-Space send-prefix
 
 # split current pane vertically
 unbind |
