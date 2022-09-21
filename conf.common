@@ -54,3 +54,5 @@ unbind Tab
 # for vim-tmux-clibpboard plugin in VIM
 set -g focus-events
 
+bind -T prefix p paste-buffer -p
+

@@ -10,3 +10,5 @@ set -g status-left "#{pomodoro_status}"
 set -g @pomodoro_on "#[fg=$text_red]🍅 "
 set -g @pomodoro_complete "#[fg=$text_green]🍅 "
 
+set -g @plugin 'fcsonline/tmux-thumbs'
+run-shell ~/.tmux/plugins/tmux-thumbs/tmux-thumbs.tmux
