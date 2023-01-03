@@ -143,7 +143,7 @@ tmux를 사용할 때는 항상 `prefix`라 불리는 키를 먼저 입력해야
  - configurable new windows and panes behavior (optionally retain current path)
  - SSH/Mosh aware split pane (reconnects to remote server)
  - copy to OS clipboard (needs [`reattach-to-user-namespace`][reattach-to-user-namespace]
-   on macOS, `xsel` or `xclip` on Linux)
+   on macOS, `xsel`, `xclip`, or `wl-copy` on Linux)
  - support for 4-digit hexadecimal Unicode characters
  - [Facebook PathPicker][] integration if available
  - [Urlview][] integration if available
