@@ -11,7 +11,7 @@
 
 준비사항:
 
-  - 버전 **`>= 2.3`** 이상의 tmux. 리눅스, 맥, 오픈BSD, 잡종 Cygwin 또는 WSL
+  - 버전 **`>= 2.4`** 이상의 tmux. 리눅스, 맥, 오픈BSD, 잡종 Cygwin 또는 WSL
   - awk, perl, sed
   - `$TERM` 환경변수는 반드시 `xterm-256color` 값으로 설정해야 함!
 
@@ -27,7 +27,7 @@ $ ln -s -f .tmux/.tmux.conf.local .
 $ brew install reattach-to-user-namespace
 ```
 
-설정 변경은 오직 `~/.tmux.conf.local` 에서만 진행할 것!  
+설정 변경은 오직 `~/.tmux.conf.local` 에서만 진행할 것!
 
 [customize]: #enabling-the-powerline-look
 
@@ -46,7 +46,7 @@ tmux가 뭔지 어떻게 사용하는지 1도 모르는 사용자는, 그냥 적
 키보드 바로가기
 --------
 
-tmux를 사용할 때는 항상 `prefix`라 불리는 키를 먼저 입력해야 함! 기본 값은 `C-b`인데  vim 사용할 때 불편해서 `C-a`로 바꿔뒀음. 보통 `C-b`도 가능하게 설정해두는 경우가 많지만, 여기서는 알짤없이 `C-a`로만 사용합니다. 
+tmux를 사용할 때는 항상 `prefix`라 불리는 키를 먼저 입력해야 함! 기본 값은 `C-b`인데  vim 사용할 때 불편해서 `C-a`로 바꿔뒀음. 보통 `C-b`도 가능하게 설정해두는 경우가 많지만, 여기서는 알짤없이 `C-a`로만 사용합니다.
 
 키 조합 표시 설명:
   - `<prefix>` <kbd>Ctrl</kbd> + <kbd>a</kbd> 입력 한다는 뜻.
@@ -60,12 +60,12 @@ tmux를 사용할 때는 항상 `prefix`라 불리는 키를 먼저 입력해야
    - `세션`<sup>session</sup> tmux 실행 단위.
    - `윈도우`<sup>window</sup> tmux 표시 단위 중 최상위 집합.  세션은 윈도우의 집합이다. *(새 터미널이나 새 iTerm2 윈도우를 만들지 않고 하나의 터미널 혹은 iTerm2 인스턴스를 사용한다)*
    - `창`<sup>pane</sup> 윈도우 내의 특정 구역. 윈도우는 창의 집합이다. 사용자에게 창은 셸<sup>shell</sup>이다.
-    
+
 
 키보드 조합 설정:
 
  - **창** <sup>pane</sup>
- 
+
    - `<prefix> |` 현재 창<sup>pane</sup>을 수직으로 분할
    - `<prefix> -` 현재 창<sup>pane</sup>을 수평으로 분할
    - `<prefix>` + `h` (왼쪽) | `j` (아래) | `k` (위) | `l` (오른쪽) -- Vim 동작방식으로 창<sup>pane</sup> 전환
@@ -89,7 +89,7 @@ tmux를 사용할 때는 항상 `prefix`라 불리는 키를 먼저 입력해야
      - `Escape` 현재 작업 취소
 
 
- - **닫기** 
+ - **닫기**
    - `<prefix> q` 창<sup>pane</sup> 닫기
    - `<prefix> Q` tmux 강제 종료
    - `<prefix> &` 응답없는 창<sup>pane</sup> 닫기
@@ -113,18 +113,18 @@ tmux를 사용할 때는 항상 `prefix`라 불리는 키를 먼저 입력해야
    - `<prefix> b` paste-buffers 목록 표시
    - `<prefix> p` paste-buffer 에서 내용 가져오기
    - `<prefix> P` 내용을 가져올 paste-buffer 선택하기
-   
- 
+
+
  - **기타**
 
    - `<prefix> m` 마우스 사용 설정/해제 (토글)
    - `<prefix> w` 세션<sup>session</sup>, 윈도우<sup>window</sup>, 창<sup>pane</sup> 목록 표시. (구조적 표현, 세션/윈도우/창 사이를 손쉽게 전환 가능)
-   - `<prefix> C-e` `$EDITOR`에 설정된 편집기로 `~/.tmux.conf.local` 설정 파일 열기. (EDITOR 설정이 없을 경우, 기본값 
+   - `<prefix> C-e` `$EDITOR`에 설정된 편집기로 `~/.tmux.conf.local` 설정 파일 열기. (EDITOR 설정이 없을 경우, 기본값
 'vim')
    - `<prefix> r` 설정파일 다시 읽어들이기
    - `C-l` 화면정리! tmux history 삭제!
    - `<prefix> U` (가능한 경우) Urlview 열기
-   - `<prefix> F` (가능한 경우) Facebook PathPicker 열기 
+   - `<prefix> F` (가능한 경우) Facebook PathPicker 열기
 
 
 
