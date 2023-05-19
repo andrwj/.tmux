@@ -2,13 +2,33 @@ tmux_conf_uninstall_plugins_on_reload=false
 tmux_conf_update_plugins_on_reload=false
 tmux_conf_update_plugins_on_launch=false
 
-set -g @plugin 'sainnhe/tmux-fzf'
-
 #https://github.com/olimorris/tmux-pomodoro-plus
-set -g @plugin 'olimorris/tmux-pomodoro-plus'
-set -g status-left "#{pomodoro_status}"
-set -g @pomodoro_on "#[fg=$text_red]🍅 "
-set -g @pomodoro_complete "#[fg=$text_green]🍅 "
+# set -g @plugin 'olimorris/tmux-pomodoro-plus'
+# set -g status-left "#{pomodoro_status}"
+# set -g @pomodoro_on "#[fg=$text_red]🍅 "
+# set -g @pomodoro_complete "#[fg=$text_green]🍅 "
 
+# TMUX 명령어를 FZF로 찾아서 실행 (호출키: prefix C-space)
+set -g @plugin 'sainnhe/tmux-fzf'
+TMUX_FZF_LAUNCH_KEY="C-space"
+# 아래 설정은 나타나기는 하지만 명령이 수행되지는 않는다
+#TMUX_FZF_MENU=\
+#"Open in VSCode\nfind . -type f \( ! -path './.git/\*' \) | fzf-tmux -d 70% | xargs code'\n"
+
+# A lightning fast version of tmux-fingers written in Rust, copy/pasting tmux like vimium/vimperator
+# 콘솔에 출력된 문자열을 복사해야할 때 유용 (호출키: prefix \)
+# -  File paths, File in diff, Git SHAs, IPFS CID's, Colors in hex, Numbers ( 4+ digits ), Hex numbers,
+# -  Markdown urls, IPv4, IPv6 addresses, Docker images, kubernetes resources, UUIDs
 set -g @plugin 'fcsonline/tmux-thumbs'
 run-shell ~/.tmux/plugins/tmux-thumbs/tmux-thumbs.tmux
+bind-key \\ thumbs-pick
+set -g @thumbs-position off_left
+set -g @thumbs-command 'tmux set-buffer -- {} && tmux display-message \"Copied {}\" && echo -n {} | pbcopy'
+
+# 맘에 들지만 상태바에 있는 특정 문자가 깨진다.
+# set -g @plugin 'catppuccin/tmux'
+#set -g @catppuccin_flavour 'latte' # , frappe, macchiato, mocha
+
+
+set -g @plugin 'artemave/tmux_super_fingers'
+set -g @super-fingers-key V
