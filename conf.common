@@ -12,7 +12,6 @@ tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched wi
 tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
 tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
 
-set-option -g default-shell /bin/bash
 set -g history-limit 30000
 set -g mouse on
 set -g status-keys vi

@@ -21,9 +21,9 @@ TMUX_FZF_LAUNCH_KEY="C-space"
 # -  Markdown urls, IPv4, IPv6 addresses, Docker images, kubernetes resources, UUIDs
 set -g @plugin 'fcsonline/tmux-thumbs'
 run-shell ~/.tmux/plugins/tmux-thumbs/tmux-thumbs.tmux
-bind-key \\ thumbs-pick
+bind-key C-\\ thumbs-pick
 set -g @thumbs-position off_left
-set -g @thumbs-command 'tmux set-buffer -- {} && tmux display-message \"Copied {}\" && echo -n {} | pbcopy'
+# set -g @thumbs-command 'tmux set-buffer -- {} && tmux display-message \"Copied {}\" && echo -n {} | pbcopy'
 
 # 맘에 들지만 상태바에 있는 특정 문자가 깨진다.
 # set -g @plugin 'catppuccin/tmux'
@@ -31,4 +31,6 @@ set -g @thumbs-command 'tmux set-buffer -- {} && tmux display-message \"Copied {
 
 
 set -g @plugin 'artemave/tmux_super_fingers'
-set -g @super-fingers-key V
+unbind C-0
+set -g @super-fingers-key C-]
+
